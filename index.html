@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -28,27 +29,18 @@
   * { margin:0; padding:0; box-sizing:border-box; font-family:'Cairo',sans-serif; }
   html, body { min-height:100vh; overflow:hidden; background:var(--bg-base); }
 
-  /* ===== خلفية رومانسية ===== */
-  .romantic-bg {
-    position:fixed; inset:0; z-index:0; overflow:hidden;
-    background: radial-gradient(ellipse at top, #2a0d3e 0%, #0a0210 60%);
-  }
-  .romantic-bg::before {
-    content:''; position:absolute; inset:0;
+  .romantic-bg { position:fixed; inset:0; z-index:0; overflow:hidden;
+    background: radial-gradient(ellipse at top, #2a0d3e 0%, #0a0210 60%); }
+  .romantic-bg::before { content:''; position:absolute; inset:0;
     background:
       radial-gradient(circle at 20% 30%, rgba(255,61,127,.15) 0%, transparent 50%),
       radial-gradient(circle at 80% 70%, rgba(168,85,247,.15) 0%, transparent 50%),
       radial-gradient(circle at 50% 50%, rgba(255,110,199,.08) 0%, transparent 70%);
-    animation:glow 8s ease-in-out infinite alternate;
-  }
+    animation:glow 8s ease-in-out infinite alternate; }
   @keyframes glow { from{opacity:.6} to{opacity:1} }
 
-  /* قلوب طائرة */
   .floating-hearts { position:fixed; inset:0; z-index:1; pointer-events:none; overflow:hidden; }
-  .heart-float {
-    position:absolute; bottom:-50px; font-size:20px; opacity:0;
-    animation:floatUp linear infinite;
-  }
+  .heart-float { position:absolute; bottom:-50px; font-size:20px; opacity:0; animation:floatUp linear infinite; }
   @keyframes floatUp {
     0% { transform:translateY(0) rotate(0) scale(1); opacity:0; }
     10% { opacity:.8; }
@@ -56,251 +48,194 @@
     100% { transform:translateY(-110vh) rotate(360deg) scale(.5); opacity:0; }
   }
 
-  /* نجوم */
   .stars { position:fixed; inset:0; z-index:1; pointer-events:none; }
-  .star {
-    position:absolute; width:2px; height:2px; background:#fff; border-radius:50%;
-    opacity:.4; animation:twinkle 3s infinite;
-  }
+  .star { position:absolute; width:2px; height:2px; background:#fff; border-radius:50%;
+    opacity:.4; animation:twinkle 3s infinite; }
   @keyframes twinkle { 0%,100%{opacity:.2; transform:scale(.8)} 50%{opacity:1; transform:scale(1.4)} }
 
-  /* ===== Splash ===== */
-  .splash {
-    position:fixed; inset:0; z-index:99999; background:var(--bg-base);
+  /* Splash */
+  .splash { position:fixed; inset:0; z-index:99999; background:var(--bg-base);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
-    transition:opacity .8s, visibility .8s;
-  }
+    transition:opacity .8s, visibility .8s; }
   .splash.hide { opacity:0; visibility:hidden; }
-  .splash-heart {
-    font-size:80px; animation:heartbeat 1.2s infinite;
-    filter:drop-shadow(0 0 30px #ff3d7f);
-  }
-  @keyframes heartbeat {
-    0%,100%{transform:scale(1)} 15%{transform:scale(1.25)} 30%{transform:scale(1)} 45%{transform:scale(1.2)}
-  }
-  .splash-text {
-    color:var(--text-primary); margin-top:24px; font-family:'Dancing Script',cursive;
-    font-size:42px; font-weight:700;
-    background:linear-gradient(135deg,#ff3d7f,#ff6ec7,#a855f7);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    animation:fadeInText 2s ease;
-  }
+  .splash-heart { font-size:80px; animation:heartbeat 1.2s infinite; filter:drop-shadow(0 0 30px #ff3d7f); }
+  @keyframes heartbeat { 0%,100%{transform:scale(1)} 15%{transform:scale(1.25)} 30%{transform:scale(1)} 45%{transform:scale(1.2)} }
+  .splash-text { color:var(--text-primary); margin-top:24px; font-family:'Dancing Script',cursive; font-size:42px; font-weight:700;
+    background:linear-gradient(135deg,#ff3d7f,#ff6ec7,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    animation:fadeInText 2s ease; }
   @keyframes fadeInText { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
   .splash-sub { color:var(--text-secondary); margin-top:8px; font-size:14px; animation:fadeInText 2s .3s backwards; }
 
-  /* ===== Auth ===== */
-  .auth-wrap {
-    position:relative; z-index:10; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
-    transition:opacity .6s, transform .6s;
-  }
+  /* Auth */
+  .auth-wrap { position:relative; z-index:10; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
+    transition:opacity .6s, transform .6s; }
   .auth-wrap.hidden { opacity:0; transform:scale(.95); pointer-events:none; position:absolute; inset:0; }
 
-  .login-card {
-    width:440px; max-width:92vw; padding:45px 40px 38px;
+  .login-card { width:440px; max-width:92vw; padding:45px 40px 38px;
     background:var(--card-bg); border:1px solid var(--card-border); border-radius:28px;
     backdrop-filter:blur(30px) saturate(180%); -webkit-backdrop-filter:blur(30px) saturate(180%);
     box-shadow:var(--shadow), inset 0 1px 0 rgba(255,255,255,.1);
-    animation:cardIn 1.2s cubic-bezier(.34,1.56,.64,1);
-    position:relative; overflow:hidden;
-  }
-  .login-card::before {
-    content:''; position:absolute; inset:-2px; border-radius:30px; padding:2px;
+    animation:cardIn 1.2s cubic-bezier(.34,1.56,.64,1); position:relative; overflow:hidden; }
+  .login-card::before { content:''; position:absolute; inset:-2px; border-radius:30px; padding:2px;
     background:conic-gradient(from 0deg, transparent, #ff3d7f 25%, #a855f7 50%, transparent 75%, #ff6ec7);
     -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite:xor; mask-composite:exclude;
-    animation:rotateBorder 6s linear infinite; pointer-events:none; z-index:-1;
-  }
+    animation:rotateBorder 6s linear infinite; pointer-events:none; z-index:-1; }
   @property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
   @keyframes rotateBorder { to { --angle: 360deg; } }
   @keyframes cardIn { from{opacity:0; transform:translateY(60px) scale(.9)} to{opacity:1; transform:translateY(0) scale(1)} }
 
-  .logo-hearts {
-    display:flex; justify-content:center; gap:6px; margin-bottom:20px;
-    font-size:34px; filter:drop-shadow(0 6px 20px rgba(255,61,127,.5));
-  }
+  .logo-hearts { display:flex; justify-content:center; gap:6px; margin-bottom:20px;
+    font-size:34px; filter:drop-shadow(0 6px 20px rgba(255,61,127,.5)); }
   .logo-hearts span:nth-child(1) { animation:beat 1.5s infinite; }
   .logo-hearts span:nth-child(2) { animation:beat 1.5s .2s infinite; font-size:44px; }
   .logo-hearts span:nth-child(3) { animation:beat 1.5s .4s infinite; }
   @keyframes beat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.25)} }
 
-  .login-card h1 {
-    text-align:center; color:var(--text-primary); font-size:28px;
+  .login-card h1 { text-align:center; color:var(--text-primary); font-size:28px;
     font-family:'Dancing Script',cursive; font-weight:700; margin-bottom:6px;
     background:linear-gradient(135deg,#ff3d7f,#ff6ec7,#a855f7);
-    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-  }
-  .login-card .subtitle {
-    text-align:center; color:var(--text-secondary); font-size:13px; margin-bottom:30px;
-  }
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .login-card .subtitle { text-align:center; color:var(--text-secondary); font-size:13px; margin-bottom:30px; }
 
   .input-group { position:relative; margin-bottom:18px; }
-  .input-group input {
-    width:100%; padding:16px 48px 16px 16px;
+  .input-group input { width:100%; padding:16px 48px 16px 16px;
     background:var(--input-bg); border:1.5px solid var(--input-border);
-    border-radius:14px; color:var(--text-primary); font-size:15px; outline:none;
-    transition:all .35s;
-  }
+    border-radius:14px; color:var(--text-primary); font-size:15px; outline:none; transition:all .35s; }
   .input-group input::placeholder { color:var(--text-secondary); opacity:.7; }
-  .input-group input:focus {
-    border-color:var(--accent-1); background:rgba(255,61,127,.08);
-    box-shadow:0 0 0 4px rgba(255,61,127,.15);
-  }
-  .input-group .icon {
-    position:absolute; right:16px; top:50%; transform:translateY(-50%);
-    font-size:18px; pointer-events:none;
-  }
-  .input-group .toggle-pass {
-    position:absolute; left:16px; top:50%; transform:translateY(-50%);
-    cursor:pointer; font-size:17px; user-select:none;
-  }
+  .input-group input:focus { border-color:var(--accent-1); background:rgba(255,61,127,.08); box-shadow:0 0 0 4px rgba(255,61,127,.15); }
+  .input-group .icon { position:absolute; right:16px; top:50%; transform:translateY(-50%); font-size:18px; pointer-events:none; }
+  .input-group .toggle-pass { position:absolute; left:16px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:17px; user-select:none; }
 
-  .error-msg {
-    font-size:12px; color:var(--error); padding-right:8px;
-    max-height:0; overflow:hidden; opacity:0; transition:all .3s;
-    display:flex; gap:5px; margin-top:-12px;
-  }
+  .error-msg { font-size:12px; color:var(--error); padding-right:8px; max-height:0; overflow:hidden; opacity:0;
+    transition:all .3s; display:flex; gap:5px; margin-top:-12px; }
   .error-msg.show { max-height:40px; opacity:1; margin-bottom:12px; }
 
-  .btn-login {
-    width:100%; padding:16px; border:none; border-radius:14px;
+  .btn-login { width:100%; padding:16px; border:none; border-radius:14px;
     background:linear-gradient(135deg,var(--accent-1),var(--accent-3));
     background-size:200% 200%; color:#fff; font-size:16px; font-weight:700;
-    cursor:pointer; transition:all .4s;
-    box-shadow:0 10px 30px rgba(255,61,127,.4);
+    cursor:pointer; transition:all .4s; box-shadow:0 10px 30px rgba(255,61,127,.4);
     display:flex; align-items:center; justify-content:center; gap:10px;
-    position:relative; overflow:hidden;
-  }
-  .btn-login:hover:not(:disabled) {
-    background-position:100% 0; transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(255,61,127,.6);
-  }
-  .btn-login::before {
-    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent);
-    transition:left .6s;
-  }
+    position:relative; overflow:hidden; }
+  .btn-login:hover:not(:disabled) { background-position:100% 0; transform:translateY(-3px); box-shadow:0 15px 40px rgba(255,61,127,.6); }
+  .btn-login::before { content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent); transition:left .6s; }
   .btn-login:hover::before { left:100%; }
   .btn-login:disabled { opacity:.7; cursor:not-allowed; }
-  .loader { width:18px; height:18px; border:2.5px solid rgba(255,255,255,.3);
-    border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:none; }
+  .loader { width:18px; height:18px; border:2.5px solid rgba(255,255,255,.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:none; }
   .btn-login.loading .loader { display:inline-block; }
   @keyframes spin { to{transform:rotate(360deg)} }
 
-  .love-note {
-    text-align:center; margin-top:22px; font-size:12px; color:var(--text-secondary);
-    font-style:italic;
-  }
+  .love-note { text-align:center; margin-top:22px; font-size:12px; color:var(--text-secondary); font-style:italic; }
 
-  /* ===== Chat ===== */
-  .chat-wrap {
-    position:relative; z-index:10; height:100vh; display:none;
-    padding:16px;
-  }
+  /* Who are you? */
+  .who-wrap { position:relative; z-index:10; min-height:100vh; display:none; align-items:center; justify-content:center; padding:20px; }
+  .who-wrap.active { display:flex; animation:cardIn .6s cubic-bezier(.34,1.56,.64,1); }
+  .who-card { width:500px; max-width:92vw; padding:45px 40px; text-align:center;
+    background:var(--card-bg); border:1px solid var(--card-border); border-radius:28px;
+    backdrop-filter:blur(30px) saturate(180%); box-shadow:var(--shadow); }
+  .who-card h2 { font-family:'Dancing Script',cursive; font-size:32px; font-weight:700; margin-bottom:10px;
+    background:linear-gradient(135deg,#ff3d7f,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .who-card p { color:var(--text-secondary); font-size:14px; margin-bottom:30px; }
+  .who-buttons { display:flex; gap:16px; justify-content:center; }
+  .who-btn { flex:1; padding:30px 20px; background:var(--input-bg); border:2px solid var(--input-border);
+    border-radius:20px; cursor:pointer; transition:all .4s; font-family:inherit; color:var(--text-primary); }
+  .who-btn:hover { transform:translateY(-6px); border-color:var(--accent-1); background:rgba(255,61,127,.1);
+    box-shadow:0 15px 40px rgba(255,61,127,.3); }
+  .who-btn .emoji { font-size:50px; display:block; margin-bottom:12px; }
+  .who-btn .name { font-size:18px; font-weight:700; }
+  .who-btn .desc { font-size:12px; color:var(--text-secondary); margin-top:4px; }
+
+  /* Chat */
+  .chat-wrap { position:relative; z-index:10; height:100vh; display:none; padding:16px; }
   .chat-wrap.active { display:block; animation:chatIn .6s cubic-bezier(.34,1.56,.64,1); }
   @keyframes chatIn { from{opacity:0; transform:scale(.96)} to{opacity:1; transform:scale(1)} }
 
-  .chat-app {
-    width:min(1200px, 100%); height:100%; margin:0 auto;
-    display:grid; grid-template-columns:280px 1fr;
+  .chat-app { width:min(1300px, 100%); height:100%; margin:0 auto;
+    display:grid; grid-template-columns:320px 1fr;
     background:var(--card-bg); border:1px solid var(--card-border);
     border-radius:24px; backdrop-filter:blur(30px) saturate(180%);
     -webkit-backdrop-filter:blur(30px) saturate(180%);
-    box-shadow:var(--shadow); overflow:hidden;
-  }
+    box-shadow:var(--shadow); overflow:hidden; }
 
-  /* Sidebar */
-  .chat-sidebar {
-    background:rgba(20,8,31,0.6); border-left:1px solid var(--card-border);
-    padding:24px 18px; display:flex; flex-direction:column; overflow-y:auto;
-  }
+  .chat-sidebar { background:rgba(20,8,31,0.6); border-left:1px solid var(--card-border);
+    padding:24px 18px; display:flex; flex-direction:column; overflow-y:auto; }
   .chat-sidebar::-webkit-scrollbar { width:4px; }
   .chat-sidebar::-webkit-scrollbar-thumb { background:var(--accent-1); border-radius:2px; }
 
-  .couple-brand {
-    text-align:center; margin-bottom:24px; padding-bottom:20px;
-    border-bottom:1px solid var(--card-border);
-  }
-  .couple-hearts {
-    font-size:32px; margin-bottom:8px; display:flex; justify-content:center; gap:4px;
-  }
+  .couple-brand { text-align:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid var(--card-border); }
+  .couple-hearts { font-size:32px; margin-bottom:8px; display:flex; justify-content:center; gap:4px; }
   .couple-hearts span:nth-child(1) { animation:beat 1.5s infinite; }
   .couple-hearts span:nth-child(2) { animation:beat 1.5s .2s infinite; font-size:22px; }
   .couple-hearts span:nth-child(3) { animation:beat 1.5s .4s infinite; }
-  .couple-brand h2 {
-    font-family:'Dancing Script',cursive; font-size:28px; font-weight:700;
+  .couple-brand h2 { font-family:'Dancing Script',cursive; font-size:26px; font-weight:700;
+    background:linear-gradient(135deg,#ff3d7f,#a855f7);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:2px; }
+  .couple-brand p { color:var(--text-secondary); font-size:10px; }
+
+  /* Cards */
+  .cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; perspective:1000px; }
+  .flip-card { height:100px; perspective:1000px; cursor:pointer; }
+  .flip-card-inner { position:relative; width:100%; height:100%; transition:transform .8s cubic-bezier(.34,1.56,.64,1);
+    transform-style:preserve-3d; }
+  .flip-card.flipped .flip-card-inner { transform:rotateY(180deg); }
+  .flip-card-front, .flip-card-back { position:absolute; inset:0; backface-visibility:hidden;
+    border-radius:14px; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:10px; text-align:center; border:1px solid var(--card-border); }
+  .flip-card-front { background:linear-gradient(135deg,rgba(255,61,127,.12),rgba(168,85,247,.12));
+    backdrop-filter:blur(10px); }
+  .flip-card-front .icon { font-size:26px; margin-bottom:4px; }
+  .flip-card-front .label { font-size:10px; color:var(--text-secondary); font-weight:600; }
+  .flip-card-back { background:linear-gradient(135deg,rgba(255,61,127,.2),rgba(168,85,247,.2));
+    backdrop-filter:blur(10px); transform:rotateY(180deg); }
+  .flip-card-back .icon { font-size:22px; margin-bottom:2px; animation:beat 1.5s infinite; }
+  .flip-card-back .num { font-size:16px; font-weight:800; color:var(--text-primary); margin-bottom:2px; }
+  .flip-card-back .lbl { font-size:9px; color:var(--text-secondary); }
+
+  .love-counter-big { background:rgba(255,61,127,.08); border:1px solid rgba(255,61,127,.2);
+    border-radius:16px; padding:16px; margin-bottom:16px; text-align:center; }
+  .love-counter-big .num { font-size:34px; font-weight:800;
     background:linear-gradient(135deg,#ff3d7f,#a855f7);
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    margin-bottom:4px;
-  }
-  .couple-brand p { color:var(--text-secondary); font-size:11px; }
+    text-shadow:0 0 30px rgba(255,61,127,.4); }
+  .love-counter-big .lbl { color:var(--text-secondary); font-size:12px; margin-top:2px; }
 
-  .love-counter {
-    background:rgba(255,61,127,.08); border:1px solid rgba(255,61,127,.2);
-    border-radius:14px; padding:14px; margin-bottom:18px; text-align:center;
-  }
-  .love-counter .num {
-    font-size:26px; font-weight:800; color:var(--accent-1);
-    text-shadow:0 0 20px rgba(255,61,127,.6);
-  }
-  .love-counter .lbl { color:var(--text-secondary); font-size:11px; margin-top:2px; }
-
-  .online-status {
-    display:flex; align-items:center; gap:8px; padding:10px 12px;
-    background:rgba(0,212,170,.08); border:1px solid rgba(0,212,170,.2);
-    border-radius:12px; margin-bottom:18px; font-size:12px; color:var(--text-secondary);
-  }
-  .online-status .dot {
-    width:8px; height:8px; border-radius:50%; background:var(--success);
-    box-shadow:0 0 10px var(--success); animation:pulseDot 2s infinite;
-  }
-  @keyframes pulseDot { 0%,100%{transform:scale(1)} 50%{transform:scale(1.4)} }
-
-  .sidebar-actions { margin-top:auto; display:flex; flex-direction:column; gap:8px; padding-top:16px; border-top:1px solid var(--card-border); }
-  .sb-btn {
-    display:flex; align-items:center; gap:10px; padding:11px 14px; border-radius:12px;
+  .sidebar-actions { margin-top:auto; display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:1px solid var(--card-border); }
+  .sb-btn { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:12px;
     background:transparent; border:1px solid var(--card-border); color:var(--text-secondary);
-    cursor:pointer; font-family:inherit; font-size:13px; font-weight:600; transition:all .3s;
-    text-align:right;
-  }
+    cursor:pointer; font-family:inherit; font-size:12px; font-weight:600; transition:all .3s; text-align:right; }
   .sb-btn:hover { background:rgba(255,61,127,.1); color:var(--text-primary); border-color:var(--accent-1); }
   .sb-btn.danger:hover { background:rgba(255,71,87,.1); color:var(--error); border-color:var(--error); }
-  .sb-btn .icon { font-size:16px; }
+  .sb-btn .icon { font-size:15px; }
+  .me-badge { display:flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px;
+    background:rgba(255,61,127,.1); border:1px solid rgba(255,61,127,.25); margin-bottom:10px; }
+  .me-badge .avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:18px; background:linear-gradient(135deg,#ff3d7f,#a855f7); }
+  .me-badge .info { flex:1; }
+  .me-badge b { display:block; color:var(--text-primary); font-size:13px; }
+  .me-badge small { color:var(--text-secondary); font-size:10px; }
 
-  /* Chat Main */
   .chat-main { display:flex; flex-direction:column; background:rgba(10,2,16,0.4); position:relative; overflow:hidden; }
 
-  .chat-header {
-    display:flex; justify-content:space-between; align-items:center;
+  .chat-header { display:flex; justify-content:space-between; align-items:center;
     padding:18px 26px; border-bottom:1px solid var(--card-border);
-    background:rgba(20,8,31,0.5); backdrop-filter:blur(20px);
-  }
+    background:rgba(20,8,31,0.5); backdrop-filter:blur(20px); }
   .chat-header .info { display:flex; align-items:center; gap:14px; }
-  .chat-header .avatar-pair {
-    display:flex; position:relative; width:54px; height:44px;
-  }
-  .chat-header .avatar-pair .av {
-    width:36px; height:36px; border-radius:50%; position:absolute; top:4px;
-    display:flex; align-items:center; justify-content:center; font-size:16px;
-    border:2px solid #14081f;
-  }
-  .chat-header .avatar-pair .av:first-child { right:0; background:linear-gradient(135deg,#ff3d7f,#a855f7); }
-  .chat-header .avatar-pair .av:last-child { left:0; background:linear-gradient(135deg,#a855f7,#ff6ec7); }
+  .avatar-pair { display:flex; position:relative; width:54px; height:44px; }
+  .avatar-pair .av { width:36px; height:36px; border-radius:50%; position:absolute; top:4px;
+    display:flex; align-items:center; justify-content:center; font-size:16px; border:2px solid #14081f; }
+  .avatar-pair .av:first-child { right:0; background:linear-gradient(135deg,#ff3d7f,#a855f7); }
+  .avatar-pair .av:last-child { left:0; background:linear-gradient(135deg,#a855f7,#ff6ec7); }
   .chat-header h1 { font-size:17px; color:var(--text-primary); font-weight:700; }
   .chat-header .sub { font-size:11px; color:var(--text-secondary); display:flex; align-items:center; gap:4px; }
 
-  /* Messages */
-  .messages-scroll {
-    flex:1; overflow-y:auto; padding:24px;
-    display:flex; flex-direction:column; gap:4px; scroll-behavior:smooth;
-  }
+  .messages-scroll { flex:1; overflow-y:auto; padding:24px;
+    display:flex; flex-direction:column; gap:4px; scroll-behavior:smooth; }
   .messages-scroll::-webkit-scrollbar { width:8px; }
   .messages-scroll::-webkit-scrollbar-thumb { background:var(--accent-1); border-radius:4px; }
-  .messages-scroll::-webkit-scrollbar-track { background:transparent; }
 
-  .empty-state {
-    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-    color:var(--text-secondary); gap:14px; text-align:center; padding:40px;
-  }
+  .empty-state { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--text-secondary); gap:14px; text-align:center; padding:40px; }
   .empty-state .big-icon { font-size:64px; animation:beat 2s infinite; filter:drop-shadow(0 0 20px #ff3d7f); }
   .empty-state h3 { color:var(--text-primary); font-size:16px; font-family:'Dancing Script',cursive; }
   .empty-state p { font-size:13px; max-width:280px; line-height:1.6; }
@@ -308,143 +243,76 @@
   .msg-group { display:flex; gap:10px; margin-bottom:12px; animation:msgIn .4s cubic-bezier(.34,1.56,.64,1); }
   @keyframes msgIn { from{opacity:0; transform:translateY(10px)} to{opacity:1; transform:translateY(0)} }
   .msg-group.mine { flex-direction:row-reverse; }
-
-  .msg-avatar {
-    width:36px; height:36px; border-radius:50%; flex-shrink:0;
-    display:flex; align-items:center; justify-content:center;
-    font-size:16px; color:#fff;
-  }
-
+  .msg-avatar { width:36px; height:36px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:16px; color:#fff; }
   .msg-body { display:flex; flex-direction:column; gap:4px; max-width:70%; min-width:0; }
   .msg-group.mine .msg-body { align-items:flex-end; }
   .msg-meta { display:flex; align-items:center; gap:6px; font-size:11px; color:var(--text-secondary); }
   .msg-meta b { color:var(--accent-2); font-size:12px; }
-
-  .msg-bubble {
-    padding:11px 16px; border-radius:18px; font-size:14px; line-height:1.5;
-    word-wrap:break-word; position:relative; transition:transform .2s;
-  }
-  .msg-group.mine .msg-bubble {
-    background:var(--my-msg); color:#fff; border-bottom-left-radius:4px;
-    box-shadow:0 4px 18px rgba(255,61,127,.4);
-  }
-  .msg-group:not(.mine) .msg-bubble {
-    background:var(--other-msg); color:var(--text-primary);
-    border-bottom-right-radius:4px; border:1px solid var(--card-border);
-    backdrop-filter:blur(10px);
-  }
+  .msg-bubble { padding:11px 16px; border-radius:18px; font-size:14px; line-height:1.5;
+    word-wrap:break-word; position:relative; transition:transform .2s; }
+  .msg-group.mine .msg-bubble { background:var(--my-msg); color:#fff; border-bottom-left-radius:4px;
+    box-shadow:0 4px 18px rgba(255,61,127,.4); }
+  .msg-group:not(.mine) .msg-bubble { background:var(--other-msg); color:var(--text-primary);
+    border-bottom-right-radius:4px; border:1px solid var(--card-border); backdrop-filter:blur(10px); }
   .msg-bubble:hover { transform:scale(1.01); }
   .msg-bubble img { max-width:100%; border-radius:12px; margin-top:6px; display:block; cursor:pointer; }
   .msg-bubble .emoji-only { font-size:34px; line-height:1.2; }
-
-  .msg-delete {
-    position:absolute; top:-6px; left:-6px; width:22px; height:22px; border-radius:50%;
+  .msg-delete { position:absolute; top:-6px; left:-6px; width:22px; height:22px; border-radius:50%;
     background:var(--error); color:#fff; border:none; cursor:pointer;
-    display:none; align-items:center; justify-content:center; font-size:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.3); z-index:2;
-  }
+    display:none; align-items:center; justify-content:center; font-size:12px; z-index:2; }
   .msg-group.mine:hover .msg-delete { display:flex; }
 
-  .day-divider {
-    align-self:center; padding:5px 16px; border-radius:20px;
+  .day-divider { align-self:center; padding:5px 16px; border-radius:20px;
     background:rgba(255,61,127,.1); color:var(--accent-2); font-size:11px;
-    margin:16px 0; font-weight:600; border:1px solid rgba(255,61,127,.2);
-  }
+    margin:16px 0; font-weight:600; border:1px solid rgba(255,61,127,.2); }
 
-  /* Input */
-  .chat-input-area {
-    padding:16px 24px; border-top:1px solid var(--card-border);
-    background:rgba(20,8,31,0.5); backdrop-filter:blur(20px);
-  }
+  .chat-input-area { padding:16px 24px; border-top:1px solid var(--card-border);
+    background:rgba(20,8,31,0.5); backdrop-filter:blur(20px); }
   .input-row { display:flex; gap:10px; align-items:flex-end; }
-  .attach-btn {
-    width:46px; height:46px; border-radius:14px; background:var(--input-bg);
-    border:1px solid var(--input-border); color:var(--text-secondary);
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-    transition:all .3s; flex-shrink:0; font-size:18px;
-  }
+  .attach-btn { width:46px; height:46px; border-radius:14px; background:var(--input-bg);
+    border:1px solid var(--input-border); color:var(--text-secondary); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; transition:all .3s; flex-shrink:0; font-size:18px; }
   .attach-btn:hover { color:var(--accent-1); border-color:var(--accent-1); background:rgba(255,61,127,.08); }
-  .input-wrap {
-    flex:1; display:flex; align-items:flex-end;
-    background:var(--input-bg); border:1.5px solid var(--input-border);
-    border-radius:16px; padding:6px 6px 6px 14px; transition:border-color .3s;
-  }
+  .input-wrap { flex:1; display:flex; align-items:flex-end; background:var(--input-bg);
+    border:1.5px solid var(--input-border); border-radius:16px; padding:6px 6px 6px 14px; transition:border-color .3s; }
   .input-wrap:focus-within { border-color:var(--accent-1); box-shadow:0 0 0 3px rgba(255,61,127,.15); }
-  .chat-input {
-    flex:1; background:transparent; border:none; outline:none;
-    color:var(--text-primary); font-family:inherit; font-size:14px;
-    padding:9px 4px; resize:none; max-height:120px; min-height:26px; line-height:1.5;
-  }
+  .chat-input { flex:1; background:transparent; border:none; outline:none; color:var(--text-primary);
+    font-family:inherit; font-size:14px; padding:9px 4px; resize:none; max-height:120px; min-height:26px; line-height:1.5; }
   .chat-input::placeholder { color:var(--text-secondary); opacity:.7; }
-  .emoji-btn {
-    width:38px; height:38px; border-radius:10px; background:transparent; border:none;
-    cursor:pointer; display:flex; align-items:center; justify-content:center;
-    font-size:19px; transition:background .2s;
-  }
+  .emoji-btn { width:38px; height:38px; border-radius:10px; background:transparent; border:none;
+    cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:19px; transition:background .2s; }
   .emoji-btn:hover { background:rgba(255,61,127,.1); }
-  .send-btn {
-    width:50px; height:46px; border-radius:14px; background:var(--my-msg);
-    color:#fff; border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:all .3s; flex-shrink:0; font-size:20px;
-    box-shadow:0 4px 16px rgba(255,61,127,.5);
-  }
+  .send-btn { width:50px; height:46px; border-radius:14px; background:var(--my-msg); color:#fff;
+    border:none; cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition:all .3s; flex-shrink:0; font-size:20px; box-shadow:0 4px 16px rgba(255,61,127,.5); }
   .send-btn:hover:not(:disabled) { transform:translateY(-2px) scale(1.05); box-shadow:0 8px 24px rgba(255,61,127,.7); }
   .send-btn:disabled { opacity:.4; cursor:not-allowed; }
 
-  /* Emoji */
-  .emoji-picker {
-    position:absolute; bottom:90px; left:24px; width:320px; max-height:280px;
+  .emoji-picker { position:absolute; bottom:90px; left:24px; width:320px; max-height:280px;
     background:var(--card-bg); border:1px solid var(--card-border); border-radius:18px;
     backdrop-filter:blur(30px); box-shadow:var(--shadow); padding:12px;
-    display:none; grid-template-columns:repeat(8,1fr); gap:4px; overflow-y:auto; z-index:20;
-  }
+    display:none; grid-template-columns:repeat(8,1fr); gap:4px; overflow-y:auto; z-index:20; }
   .emoji-picker.show { display:grid; }
-  .emoji-picker button {
-    background:transparent; border:none; font-size:22px; cursor:pointer;
-    padding:6px; border-radius:8px; transition:all .2s;
-  }
+  .emoji-picker button { background:transparent; border:none; font-size:22px; cursor:pointer;
+    padding:6px; border-radius:8px; transition:all .2s; }
   .emoji-picker button:hover { background:rgba(255,61,127,.15); transform:scale(1.2); }
 
-  /* Image modal */
-  .img-modal {
-    position:fixed; inset:0; z-index:20000; background:rgba(0,0,0,.92);
-    display:none; align-items:center; justify-content:center; padding:20px; cursor:zoom-out;
-  }
+  .img-modal { position:fixed; inset:0; z-index:20000; background:rgba(0,0,0,.92);
+    display:none; align-items:center; justify-content:center; padding:20px; cursor:zoom-out; }
   .img-modal.show { display:flex; animation:fadeIn .3s; }
   @keyframes fadeIn { from{opacity:0} to{opacity:1} }
   .img-modal img { max-width:95vw; max-height:95vh; border-radius:16px; box-shadow:0 20px 60px rgba(255,61,127,.4); }
 
-  /* Toast */
   .toast-container { position:fixed; top:24px; right:24px; z-index:10000; display:flex; flex-direction:column; gap:10px; }
-  .toast {
-    min-width:280px; padding:14px 18px; border-radius:14px;
-    background:var(--card-bg); border:1px solid var(--card-border);
-    backdrop-filter:blur(20px); color:var(--text-primary);
+  .toast { min-width:280px; padding:14px 18px; border-radius:14px; background:var(--card-bg);
+    border:1px solid var(--card-border); backdrop-filter:blur(20px); color:var(--text-primary);
     display:flex; align-items:center; gap:12px; font-size:14px; font-weight:500;
-    box-shadow:var(--shadow); animation:toastIn .4s cubic-bezier(.34,1.56,.64,1);
-    border-right:4px solid var(--accent-1);
-  }
+    box-shadow:var(--shadow); animation:toastIn .4s cubic-bezier(.34,1.56,.64,1); border-right:4px solid var(--accent-1); }
   .toast.success { border-right-color:var(--success); }
   .toast.error { border-right-color:var(--error); }
   @keyframes toastIn { from{transform:translateX(120%); opacity:0} to{transform:translateX(0); opacity:1} }
   @keyframes toastOut { to{transform:translateX(120%); opacity:0} }
-
-  /* Typing */
-  .typing-indicator {
-    display:none; align-items:center; gap:6px; padding:8px 14px;
-    background:rgba(255,182,213,0.08); border-radius:16px;
-    width:fit-content; margin-bottom:12px; font-size:12px; color:var(--text-secondary);
-  }
-  .typing-indicator.show { display:flex; }
-  .typing-dots { display:flex; gap:3px; }
-  .typing-dots span {
-    width:6px; height:6px; border-radius:50%; background:var(--accent-2);
-    animation:typingBounce 1.4s infinite;
-  }
-  .typing-dots span:nth-child(2) { animation-delay:.2s; }
-  .typing-dots span:nth-child(3) { animation-delay:.4s; }
-  @keyframes typingBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-6px)} }
 
   @media (max-width:768px) {
     .chat-wrap { padding:0; }
@@ -453,61 +321,74 @@
     .msg-body { max-width:82%; }
     .emoji-picker { left:10px; right:10px; width:auto; }
     .login-card { padding:35px 24px 30px; }
+    .who-buttons { flex-direction:column; }
   }
 </style>
 </head>
 <body>
 
-<!-- Splash -->
 <div class="splash" id="splash">
   <div class="splash-heart">💕</div>
   <div class="splash-text">يوسف & زوتي</div>
   <div class="splash-sub">قصة حب لا تنتهي...</div>
 </div>
 
-<!-- خلفية -->
 <div class="romantic-bg"></div>
 <div class="floating-hearts" id="floatingHearts"></div>
 <div class="stars" id="stars"></div>
-
 <div class="toast-container" id="toastContainer"></div>
 <div class="img-modal" id="imgModal"><img id="imgModalSrc" alt=""></div>
 
-<!-- ===== AUTH ===== -->
+<!-- AUTH -->
 <div class="auth-wrap" id="authWrap">
   <div class="login-card">
     <div class="logo-hearts"><span>💕</span><span>💖</span><span>💕</span></div>
     <h1>يوسف & زوتي</h1>
     <p class="subtitle">🔒 مساحتنا الخاصة — لأعيننا فقط</p>
-
     <form id="loginForm" novalidate>
       <div class="input-group">
         <input type="email" id="email" placeholder="البريد الإلكتروني" autocomplete="email">
         <span class="icon">💌</span>
       </div>
       <div class="error-msg" id="emailError">⚠️ <span></span></div>
-
       <div class="input-group">
         <input type="password" id="password" placeholder="كلمة السر" autocomplete="current-password">
         <span class="icon">🔐</span>
         <span class="toggle-pass" id="togglePass">👁️</span>
       </div>
       <div class="error-msg" id="passError">⚠️ <span></span></div>
-
       <button type="submit" class="btn-login" id="submitBtn">
         <span class="loader"></span>
         <span id="submitText">ادخل عالمنا 💕</span>
       </button>
     </form>
-
     <p class="love-note">💕 مكان خاص لشخصين فقط 💕</p>
   </div>
 </div>
 
-<!-- ===== CHAT ===== -->
+<!-- WHO ARE YOU -->
+<div class="who-wrap" id="whoWrap">
+  <div class="who-card">
+    <h2>مين اللي بيدخل دلوقتي؟</h2>
+    <p>اختار عشان نعرف مين بيبعت 💕</p>
+    <div class="who-buttons">
+      <button class="who-btn" data-user="يوسف" data-emoji="👦">
+        <span class="emoji">👦</span>
+        <span class="name">يوسف</span>
+        <span class="desc">قلبها 💙</span>
+      </button>
+      <button class="who-btn" data-user="زوتي" data-emoji="👧">
+        <span class="emoji">👧</span>
+        <span class="name">زوتي</span>
+        <span class="desc">قلبه 💗</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CHAT -->
 <div class="chat-wrap" id="chatWrap">
   <div class="chat-app">
-    <!-- Sidebar -->
     <aside class="chat-sidebar">
       <div class="couple-brand">
         <div class="couple-hearts"><span>💕</span><span>💖</span><span>💕</span></div>
@@ -515,20 +396,47 @@
         <p>معاً للأبد 💍</p>
       </div>
 
-      <div class="love-counter">
+      <div class="love-counter-big">
         <div class="num" id="daysTogether">0</div>
         <div class="lbl">يوم معاً 💕</div>
       </div>
 
-      <div class="online-status">
-        <span class="dot"></span>
-        <span id="onlineCount">متصل الآن</span>
+      <div class="cards-grid" id="cardsGrid">
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><div class="icon">📅</div><div class="label">منذ 27 مارس</div></div>
+            <div class="flip-card-back"><div class="icon">💕</div><div class="num" id="daysCard">0</div><div class="lbl">يوم معاً</div></div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><div class="icon">🎂</div><div class="label">عيد ميلادك</div></div>
+            <div class="flip-card-back"><div class="icon">🎉</div><div class="num" id="yusufBdayCard">0</div><div class="lbl">باقي يوم</div></div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><div class="icon">🎈</div><div class="label">عيد ميلادها</div></div>
+            <div class="flip-card-back"><div class="icon">🎊</div><div class="num" id="zozBdayCard">0</div><div class="lbl">باقي يوم</div></div>
+          </div>
+        </div>
+        <div class="flip-card" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"><div class="icon">⏳</div><div class="label">أقرب عيد</div></div>
+            <div class="flip-card-back"><div class="icon">💝</div><div class="num" id="nextBdayCard">0</div><div class="lbl">يوم</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="me-badge">
+        <div class="avatar" id="meAvatar">👦</div>
+        <div class="info"><b id="meName">يوسف</b><small>أنت الآن</small></div>
       </div>
 
       <div class="sidebar-actions">
-        <button class="sb-btn" id="toggleSound">
-          <span class="icon" id="soundIcon">🔔</span>
-          <span id="soundLabel">الصوت مفعّل</span>
+        <button class="sb-btn" id="switchUser">
+          <span class="icon">🔄</span>
+          <span>تبديل المستخدم</span>
         </button>
         <button class="sb-btn" id="clearChat">
           <span class="icon">🗑️</span>
@@ -541,14 +449,10 @@
       </div>
     </aside>
 
-    <!-- Main -->
     <main class="chat-main">
       <div class="chat-header">
         <div class="info">
-          <div class="avatar-pair">
-            <div class="av">👦</div>
-            <div class="av">👧</div>
-          </div>
+          <div class="avatar-pair"><div class="av">👦</div><div class="av">👧</div></div>
           <div>
             <h1>يوسف & زوتي</h1>
             <div class="sub"><span style="color:var(--success)">●</span> محادثة خاصة</div>
@@ -560,13 +464,8 @@
         <div class="empty-state" id="emptyState">
           <div class="big-icon">💌</div>
           <h3>ابدأوا قصتكم</h3>
-          <p>اكتب أول رسالة لزوتي وابدأوا حكاية حب جديدة 💕</p>
+          <p>اكتب أول رسالة وابدأوا حكاية حب جديدة 💕</p>
         </div>
-      </div>
-
-      <div class="typing-indicator" id="typingIndicator">
-        <span>يكتب الآن</span>
-        <div class="typing-dots"><span></span><span></span><span></span></div>
       </div>
 
       <div class="chat-input-area">
@@ -574,19 +473,17 @@
           <button class="attach-btn" id="attachBtn" title="إرفاق صورة">📷</button>
           <input type="file" id="fileInput" accept="image/*" style="display:none">
           <div class="input-wrap">
-            <textarea class="chat-input" id="chatInput" placeholder="اكتب رسالتك لزوتي..." rows="1"></textarea>
+            <textarea class="chat-input" id="chatInput" placeholder="اكتب رسالتك..." rows="1"></textarea>
             <button class="emoji-btn" id="emojiBtn">😊</button>
           </div>
           <button class="send-btn" id="sendBtn" disabled>➤</button>
         </div>
       </div>
-
       <div class="emoji-picker" id="emojiPicker"></div>
     </main>
   </div>
 </div>
 
-<!-- ===== FIREBASE ===== -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, deleteDoc, doc, getDocs, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -604,10 +501,11 @@
   const db = getFirestore(app);
   const storage = getStorage(app);
 
-  // ✅ بيانات الحساب
   const COUPLE_EMAIL = 'zozyuozo3272@gmail.com';
   const COUPLE_PASSWORD = 'joozoo327#';
-  const START_DATE = new Date('2024-01-01'); // تاريخ بداية القصة — عدّله
+  const START_DATE = new Date('2026-03-27');
+  const YUSUF_BDAY = { month: 9, day: 16 }; // 16 سبتمبر
+  const ZOZ_BDAY = { month: 11, day: 6 };   // 6 نوفمبر
 
   const $ = id => document.getElementById(id);
   const toast = (msg, type='info', dur=3000) => {
@@ -619,15 +517,12 @@
     setTimeout(() => { t.style.animation='toastOut .4s forwards'; setTimeout(()=>t.remove(),400); }, dur);
   };
 
-  // Splash
-  window.addEventListener('load', () => {
-    setTimeout(() => $('splash').classList.add('hide'), 2200);
-  });
+  window.addEventListener('load', () => setTimeout(() => $('splash').classList.add('hide'), 2200));
 
-  // Hearts background
-  function spawnHearts() {
+  // خلفية
+  (function spawnHearts() {
     const hearts = ['💕','💖','💗','💓','💘','💝','💞','❤️','🌹','✨'];
-    const container = $('floatingHearts');
+    const c = $('floatingHearts');
     for (let i = 0; i < 25; i++) {
       const h = document.createElement('div');
       h.className = 'heart-float';
@@ -636,13 +531,10 @@
       h.style.fontSize = (12 + Math.random() * 18) + 'px';
       h.style.animationDuration = (10 + Math.random() * 15) + 's';
       h.style.animationDelay = (Math.random() * 10) + 's';
-      container.appendChild(h);
+      c.appendChild(h);
     }
-  }
-  spawnHearts();
-
-  // Stars
-  function spawnStars() {
+  })();
+  (function spawnStars() {
     const s = $('stars');
     for (let i = 0; i < 80; i++) {
       const st = document.createElement('div');
@@ -653,10 +545,8 @@
       st.style.animationDuration = (2 + Math.random() * 3) + 's';
       s.appendChild(st);
     }
-  }
-  spawnStars();
+  })();
 
-  // Toggle password
   $('togglePass').addEventListener('click', () => {
     const p = $('password');
     p.type = p.type === 'password' ? 'text' : 'password';
@@ -685,54 +575,66 @@
     const btn = $('submitBtn');
     btn.classList.add('loading');
     btn.disabled = true;
-    await new Promise(r => setTimeout(r, 1200));
-
-    // حفظ الجلسة
-    localStorage.setItem('couple_logged_in', 'true');
-    localStorage.setItem('login_time', Date.now().toString());
+    await new Promise(r => setTimeout(r, 1000));
 
     $('authWrap').classList.add('hidden');
-    $('chatWrap').classList.add('active');
-    initChat();
-    toast('أهلاً بيكم في عالمكم 💕', 'success');
+    $('whoWrap').classList.add('active');
   });
 
-  // Check session
-  if (localStorage.getItem('couple_logged_in') === 'true') {
-    setTimeout(() => {
-      $('authWrap').classList.add('hidden');
+  // Who are you?
+  document.querySelectorAll('.who-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const user = btn.dataset.user;
+      const emoji = btn.dataset.emoji;
+      localStorage.setItem('current_user', user);
+      localStorage.setItem('current_emoji', emoji);
+      $('meName').textContent = user;
+      $('meAvatar').textContent = emoji;
+      $('whoWrap').classList.remove('active');
       $('chatWrap').classList.add('active');
       initChat();
-    }, 2200);
-  }
+      toast(`أهلاً بيك ${user} 💕`, 'success');
+    });
+  });
 
-  // Days counter
-  function updateDaysCounter() {
+  // ===== Time helpers =====
+  function daysSince(date) {
     const now = new Date();
-    const diff = Math.floor((now - START_DATE) / (1000 * 60 * 60 * 24));
-    $('daysTogether').textContent = diff.toLocaleString('ar-EG');
+    return Math.floor((now - date) / (1000 * 60 * 60 * 24));
   }
-  updateDaysCounter();
-  setInterval(updateDaysCounter, 60000);
+  function daysUntilBirthday(month, day) {
+    const now = new Date();
+    now.setHours(0,0,0,0);
+    let next = new Date(now.getFullYear(), month - 1, day);
+    if (next < now) next = new Date(now.getFullYear() + 1, month - 1, day);
+    return Math.ceil((next - now) / (1000 * 60 * 60 * 24));
+  }
+  function updateCounters() {
+    const days = daysSince(START_DATE);
+    const ybday = daysUntilBirthday(YUSUF_BDAY.month, YUSUF_BDAY.day);
+    const zbday = daysUntilBirthday(ZOZ_BDAY.month, ZOZ_BDAY.day);
+    const nearest = Math.min(ybday, zbday);
+    $('daysTogether').textContent = Math.max(0, days).toLocaleString('ar-EG');
+    $('daysCard').textContent = Math.max(0, days).toLocaleString('ar-EG');
+    $('yusufBdayCard').textContent = ybday.toLocaleString('ar-EG');
+    $('zozBdayCard').textContent = zbday.toLocaleString('ar-EG');
+    $('nextBdayCard').textContent = nearest.toLocaleString('ar-EG');
+  }
+  updateCounters();
+  setInterval(updateCounters, 60000);
 
   // ===== Chat =====
-  let currentUser = 'يوسف'; // افتراضي — ممكن نغيره
+  let currentUser = localStorage.getItem('current_user') || '';
+  let currentEmoji = localStorage.getItem('current_emoji') || '👦';
   let unsubMessages = null;
   let allMessages = [];
   let isFirstLoad = true;
-  let soundEnabled = true;
 
   function initChat() {
     if (unsubMessages) return;
+    currentUser = localStorage.getItem('current_user');
+    currentEmoji = localStorage.getItem('current_emoji');
     listenMessages();
-    listenTyping();
-    updateOnlineStatus();
-    setInterval(updateOnlineStatus, 15000);
-  }
-
-  function updateOnlineStatus() {
-    // مؤشر متصل بسيط
-    $('onlineCount').textContent = 'متصل الآن 💕';
   }
 
   function listenMessages() {
@@ -745,48 +647,6 @@
       renderMessages(msgs, wasInitial);
       if (wasInitial) isFirstLoad = false;
     }, err => console.error('Firestore error:', err));
-  }
-
-  function renderMessages(msgs, silent = false) {
-    const scroll = $('messagesScroll');
-    const wasAtBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 100;
-    const empty = $('emptyState');
-
-    if (!msgs.length) {
-      if (empty) empty.style.display = 'flex';
-      scroll.querySelectorAll('.msg-group, .day-divider').forEach(e => e.remove());
-      return;
-    }
-    if (empty) empty.style.display = 'none';
-
-    let lastDay = '';
-    let html = '';
-    msgs.forEach(m => {
-      const day = formatDay(m.createdAt);
-      if (day && day !== lastDay) { html += `<div class="day-divider">${day}</div>`; lastDay = day; }
-      const mine = m.sender === currentUser;
-      const avatar = mine ? '👦' : '👧';
-      const avatarBg = mine ? 'linear-gradient(135deg,#ff3d7f,#a855f7)' : 'linear-gradient(135deg,#a855f7,#ff6ec7)';
-      const text = m.text ? escapeHtml(m.text) : '';
-      const img = m.imageUrl ? `<img src="${m.imageUrl}" onclick="showImage('${m.imageUrl}')" alt="">` : '';
-      const isEmoji = m.text && /^\p{Emoji}+$/u.test(m.text.trim());
-      const bubbleClass = isEmoji ? 'msg-bubble emoji-only' : 'msg-bubble';
-      html += `
-        <div class="msg-group ${mine?'mine':''}">
-          <div class="msg-avatar" style="background:${avatarBg}">${avatar}</div>
-          <div class="msg-body">
-            <div class="msg-meta"><b>${mine?'أنت':escapeHtml(m.sender||'زوتي')}</b><span>${formatTime(m.createdAt)}</span></div>
-            <div class="${bubbleClass}">${text}${img}${mine?`<button class="msg-delete" onclick="deleteMsg('${m.id}')">×</button>`:''}</div>
-          </div>
-        </div>`;
-    });
-
-    scroll.querySelectorAll('.msg-group, .day-divider').forEach(e => e.remove());
-    scroll.insertAdjacentHTML('beforeend', html);
-
-    if (wasAtBottom || silent) {
-      scroll.scrollTop = scroll.scrollHeight;
-    }
   }
 
   function formatTime(ts) {
@@ -808,6 +668,46 @@
     const div = document.createElement('div'); div.textContent = s; return div.innerHTML;
   }
 
+  function renderMessages(msgs, silent = false) {
+    const scroll = $('messagesScroll');
+    const wasAtBottom = scroll.scrollHeight - scroll.scrollTop - scroll.clientHeight < 100;
+    const empty = $('emptyState');
+    if (!msgs.length) {
+      if (empty) empty.style.display = 'flex';
+      scroll.querySelectorAll('.msg-group, .day-divider').forEach(e => e.remove());
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+
+    let lastDay = '';
+    let html = '';
+    msgs.forEach(m => {
+      const day = formatDay(m.createdAt);
+      if (day && day !== lastDay) { html += `<div class="day-divider">${day}</div>`; lastDay = day; }
+      const mine = m.sender === currentUser;
+      const senderEmoji = m.sender === 'يوسف' ? '👦' : '👧';
+      const avatarBg = m.sender === 'يوسف'
+        ? 'linear-gradient(135deg,#2575fc,#6a11cb)'
+        : 'linear-gradient(135deg,#ff0080,#ffd93d)';
+      const text = m.text ? escapeHtml(m.text) : '';
+      const img = m.imageUrl ? `<img src="${m.imageUrl}" onclick="showImage('${m.imageUrl}')" alt="">` : '';
+      const isEmoji = m.text && /^\p{Emoji}+$/u.test(m.text.trim());
+      const bubbleClass = isEmoji ? 'msg-bubble emoji-only' : 'msg-bubble';
+      html += `
+        <div class="msg-group ${mine?'mine':''}">
+          <div class="msg-avatar" style="background:${avatarBg}">${senderEmoji}</div>
+          <div class="msg-body">
+            <div class="msg-meta"><b>${mine?'أنت':escapeHtml(m.sender||'')}</b><span>${formatTime(m.createdAt)}</span></div>
+            <div class="${bubbleClass}">${text}${img}${mine?`<button class="msg-delete" onclick="deleteMsg('${m.id}')">×</button>`:''}</div>
+          </div>
+        </div>`;
+    });
+
+    scroll.querySelectorAll('.msg-group, .day-divider').forEach(e => e.remove());
+    scroll.insertAdjacentHTML('beforeend', html);
+    if (wasAtBottom || silent) scroll.scrollTop = scroll.scrollHeight;
+  }
+
   window.showImage = url => { $('imgModalSrc').src = url; $('imgModal').classList.add('show'); };
   $('imgModal').addEventListener('click', () => $('imgModal').classList.remove('show'));
 
@@ -823,7 +723,6 @@
     sendBtn.disabled = !chatInput.value.trim();
     chatInput.style.height = 'auto';
     chatInput.style.height = Math.min(chatInput.scrollHeight, 120) + 'px';
-    updateTyping();
   });
   chatInput.addEventListener('keydown', e => {
     if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
@@ -832,7 +731,7 @@
 
   async function sendMessage() {
     const text = chatInput.value.trim();
-    if (!text) return;
+    if (!text || !currentUser) return;
     chatInput.value = ''; chatInput.style.height = 'auto'; sendBtn.disabled = true;
     try {
       await addDoc(collection(db, 'couple_messages'), {
@@ -840,17 +739,6 @@
       });
       $('messagesScroll').scrollTop = $('messagesScroll').scrollHeight;
     } catch(e) { toast('فشل الإرسال', 'error'); chatInput.value = text; }
-  }
-
-  // Typing
-  let typingTimeout = null;
-  function updateTyping() {
-    clearTimeout(typingTimeout);
-    typingTimeout = setTimeout(() => {}, 1000);
-  }
-
-  function listenTyping() {
-    // typing indicator بسيط — ممكن نضيفها بـ Firestore لاحقاً
   }
 
   // Attach
@@ -888,11 +776,12 @@
     if (!emojiPicker.contains(e.target) && e.target.id !== 'emojiBtn') emojiPicker.classList.remove('show');
   });
 
-  // Sound
-  $('toggleSound').addEventListener('click', () => {
-    soundEnabled = !soundEnabled;
-    $('soundIcon').textContent = soundEnabled ? '🔔' : '🔕';
-    $('soundLabel').textContent = soundEnabled ? 'الصوت مفعّل' : 'الصوت مكتوم';
+  // Switch user
+  $('switchUser').addEventListener('click', () => {
+    if (!confirm('تبديل المستخدم؟')) return;
+    localStorage.removeItem('current_user');
+    localStorage.removeItem('current_emoji');
+    location.reload();
   });
 
   // Clear chat
@@ -910,7 +799,8 @@
   // Logout
   $('logoutBtn').addEventListener('click', () => {
     if (!confirm('تسجيل الخروج؟ 💔')) return;
-    localStorage.removeItem('couple_logged_in');
+    localStorage.removeItem('current_user');
+    localStorage.removeItem('current_emoji');
     location.reload();
   });
 </script>
