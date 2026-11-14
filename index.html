@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,10 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>💕 يوسف & زوتي</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
 <style>
   :root {
     --bg-base: #0a0210;
-    --bg-deep: #14081f;
     --card-bg: rgba(255,182,213,0.06);
     --card-border: rgba(255,182,213,0.15);
     --text-primary: #ffe6f2;
@@ -53,7 +59,6 @@
     opacity:.4; animation:twinkle 3s infinite; }
   @keyframes twinkle { 0%,100%{opacity:.2; transform:scale(.8)} 50%{opacity:1; transform:scale(1.4)} }
 
-  /* Splash */
   .splash { position:fixed; inset:0; z-index:99999; background:var(--bg-base);
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     transition:opacity .8s, visibility .8s; }
@@ -66,7 +71,6 @@
   @keyframes fadeInText { from{opacity:0; transform:translateY(20px)} to{opacity:1; transform:translateY(0)} }
   .splash-sub { color:var(--text-secondary); margin-top:8px; font-size:14px; animation:fadeInText 2s .3s backwards; }
 
-  /* Auth */
   .auth-wrap { position:relative; z-index:10; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:20px;
     transition:opacity .6s, transform .6s; }
   .auth-wrap.hidden { opacity:0; transform:scale(.95); pointer-events:none; position:absolute; inset:0; }
@@ -81,7 +85,6 @@
     -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite:xor; mask-composite:exclude;
     animation:rotateBorder 6s linear infinite; pointer-events:none; z-index:-1; }
-  @property --angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
   @keyframes rotateBorder { to { --angle: 360deg; } }
   @keyframes cardIn { from{opacity:0; transform:translateY(60px) scale(.9)} to{opacity:1; transform:translateY(0) scale(1)} }
 
@@ -128,7 +131,6 @@
 
   .love-note { text-align:center; margin-top:22px; font-size:12px; color:var(--text-secondary); font-style:italic; }
 
-  /* Who are you? */
   .who-wrap { position:relative; z-index:10; min-height:100vh; display:none; align-items:center; justify-content:center; padding:20px; }
   .who-wrap.active { display:flex; animation:cardIn .6s cubic-bezier(.34,1.56,.64,1); }
   .who-card { width:500px; max-width:92vw; padding:45px 40px; text-align:center;
@@ -146,7 +148,6 @@
   .who-btn .name { font-size:18px; font-weight:700; }
   .who-btn .desc { font-size:12px; color:var(--text-secondary); margin-top:4px; }
 
-  /* Chat */
   .chat-wrap { position:relative; z-index:10; height:100vh; display:none; padding:16px; }
   .chat-wrap.active { display:block; animation:chatIn .6s cubic-bezier(.34,1.56,.64,1); }
   @keyframes chatIn { from{opacity:0; transform:scale(.96)} to{opacity:1; transform:scale(1)} }
@@ -173,7 +174,42 @@
     -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:2px; }
   .couple-brand p { color:var(--text-secondary); font-size:10px; }
 
-  /* Cards */
+  .story-btn {
+    display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px;
+    background:linear-gradient(135deg,rgba(255,61,127,.15),rgba(168,85,247,.15));
+    border:1px solid rgba(255,61,127,.3); color:var(--text-primary);
+    cursor:pointer; font-family:inherit; font-size:13px; font-weight:700;
+    transition:all .3s; margin-bottom:10px; width:100%;
+    position:relative; overflow:hidden;
+  }
+  .story-btn::before {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(255,61,127,.3),transparent);
+    transition:left .8s;
+  }
+  .story-btn:hover::before { left:100%; }
+  .story-btn:hover { transform:translateY(-2px); border-color:var(--accent-1);
+    box-shadow:0 8px 25px rgba(255,61,127,.3); }
+  .story-btn .icon { font-size:18px; animation:beat 1.5s infinite; }
+
+  .cinema-btn {
+    display:flex; align-items:center; gap:10px; padding:12px 14px; border-radius:12px;
+    background:linear-gradient(135deg,rgba(168,85,247,.15),rgba(255,61,127,.15));
+    border:1px solid rgba(168,85,247,.3); color:var(--text-primary);
+    cursor:pointer; font-family:inherit; font-size:13px; font-weight:700;
+    transition:all .3s; margin-bottom:10px; width:100%;
+    position:relative; overflow:hidden;
+  }
+  .cinema-btn::before {
+    content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+    background:linear-gradient(90deg,transparent,rgba(168,85,247,.3),transparent);
+    transition:left .8s;
+  }
+  .cinema-btn:hover::before { left:100%; }
+  .cinema-btn:hover { transform:translateY(-2px); border-color:var(--accent-3);
+    box-shadow:0 8px 25px rgba(168,85,247,.3); }
+  .cinema-btn .icon { font-size:18px; }
+
   .cards-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px; perspective:1000px; }
   .flip-card { height:100px; perspective:1000px; cursor:pointer; }
   .flip-card-inner { position:relative; width:100%; height:100%; transition:transform .8s cubic-bezier(.34,1.56,.64,1);
@@ -314,6 +350,170 @@
   @keyframes toastIn { from{transform:translateX(120%); opacity:0} to{transform:translateX(0); opacity:1} }
   @keyframes toastOut { to{transform:translateX(120%); opacity:0} }
 
+  .heart-tree-bg {
+    position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.08;
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .heart-tree-bg svg { width:80vmin; height:80vmin; }
+
+  .story-overlay {
+    position:fixed; inset:0; z-index:50000; background:radial-gradient(ellipse at center,#2a0d3e 0%,#0a0210 80%);
+    display:none; align-items:center; justify-content:center; overflow:hidden;
+    animation:storyFadeIn .6s ease;
+  }
+  .story-overlay.show { display:flex; }
+  @keyframes storyFadeIn { from{opacity:0} to{opacity:1} }
+
+  .story-close {
+    position:absolute; top:24px; left:24px; width:48px; height:48px; border-radius:50%;
+    background:rgba(255,61,127,.15); border:1px solid rgba(255,61,127,.4);
+    color:#fff; font-size:22px; cursor:pointer; z-index:10;
+    display:flex; align-items:center; justify-content:center; transition:all .3s;
+  }
+  .story-close:hover { background:rgba(255,61,127,.3); transform:rotate(90deg); }
+
+  .story-stage {
+    position:relative; width:100%; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+
+  .story-tree {
+    width:min(70vmin,600px); height:min(70vmin,600px); position:relative;
+  }
+  .story-tree svg { width:100%; height:100%; overflow:visible; }
+  .tree-path {
+    fill:none; stroke:url(#treeGrad); stroke-width:2.5; stroke-linecap:round;
+    stroke-dasharray:1000; stroke-dashoffset:1000;
+    animation:drawTree 4s ease-out forwards;
+  }
+  .tree-path:nth-child(2) { animation-delay:.3s; }
+  .tree-path:nth-child(3) { animation-delay:.6s; }
+  .tree-path:nth-child(4) { animation-delay:.9s; }
+  .tree-path:nth-child(5) { animation-delay:1.2s; }
+  @keyframes drawTree { to{stroke-dashoffset:0} }
+
+  .tree-leaf {
+    opacity:0; animation:leafPop .6s ease forwards;
+  }
+  .tree-leaf:nth-child(n) { animation-delay:calc(2.5s + var(--i,0)*.08s); }
+  @keyframes leafPop { 0%{opacity:0; transform:scale(0)} 60%{transform:scale(1.3)} 100%{opacity:.9; transform:scale(1)} }
+
+  .story-pen-text {
+    position:absolute; bottom:-60px; left:50%; transform:translateX(-50%);
+    font-family:'Dancing Script',cursive; font-size:48px; font-weight:700;
+    background:linear-gradient(135deg,#ff3d7f,#a855f7,#ff6ec7);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    clip-path:inset(0 100% 0 0); animation:writeText 3s 4s ease forwards;
+    white-space:nowrap; filter:drop-shadow(0 0 20px rgba(255,61,127,.6));
+  }
+  @keyframes writeText { to{clip-path:inset(0 0 0 0)} }
+
+  .story-iloveyou {
+    position:absolute; top:20px; left:50%; transform:translateX(-50%);
+    text-align:center; opacity:0; animation:fadeInLove 1.5s 7s ease forwards;
+  }
+  @keyframes fadeInLove { to{opacity:1} }
+  .story-iloveyou .line1 {
+    font-size:14px; letter-spacing:6px; color:var(--text-secondary);
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .story-iloveyou .line2 {
+    font-family:'Dancing Script',cursive; font-size:64px; font-weight:700;
+    background:linear-gradient(135deg,#ff3d7f,#a855f7,#ff6ec7,#fbbf24);
+    background-size:200% 200%;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    animation:gradientMove 4s linear infinite;
+    filter:drop-shadow(0 0 30px rgba(255,61,127,.5));
+  }
+  @keyframes gradientMove { 0%{background-position:0% 50%} 100%{background-position:200% 50%} }
+
+  .story-iloveyou .line3 {
+    font-family:'Dancing Script',cursive; font-size:22px; margin-top:8px;
+    color:var(--accent-2); opacity:0; animation:fadeInLove 1s 9s ease forwards;
+  }
+
+  .story-heart {
+    position:absolute; font-size:16px; opacity:0; pointer-events:none;
+    animation:storyHeartFly 6s ease-in infinite;
+  }
+  @keyframes storyHeartFly {
+    0% { transform:translateY(0) scale(0); opacity:0; }
+    20% { opacity:.9; }
+    100% { transform:translateY(-40vh) scale(1.2) rotate(180deg); opacity:0; }
+  }
+
+  .story-spark {
+    position:absolute; width:4px; height:4px; border-radius:50%;
+    background:#fff; box-shadow:0 0 10px #ff3d7f, 0 0 20px #a855f7;
+    animation:sparkFloat 4s ease-in-out infinite;
+  }
+  @keyframes sparkFloat {
+    0%,100% { transform:translate(0,0); opacity:0; }
+    50% { transform:translate(20px,-20px); opacity:1; }
+  }
+
+  .cinema-overlay {
+    position:fixed; inset:0; z-index:60000; background:#000;
+    display:none; overflow:hidden;
+  }
+  .cinema-overlay.show { display:block; animation:cinemaIn .8s ease; }
+  @keyframes cinemaIn { from{opacity:0} to{opacity:1} }
+
+  #cinemaCanvas {
+    position:absolute; inset:0; width:100%; height:100%;
+    display:block;
+  }
+
+  .cinema-close {
+    position:absolute; top:24px; left:24px; z-index:10;
+    width:52px; height:52px; border-radius:50%;
+    background:rgba(255,61,127,.2); border:1px solid rgba(255,61,127,.5);
+    color:#fff; font-size:24px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(10px); transition:all .3s;
+  }
+  .cinema-close:hover { background:rgba(255,61,127,.5); transform:rotate(90deg) scale(1.1); }
+
+  .cinema-title {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    text-align:center; z-index:5; pointer-events:none;
+    opacity:0; animation:cinemaTitle 2s 1s ease forwards;
+  }
+  @keyframes cinemaTitle { to{opacity:1} }
+  .cinema-title h2 {
+    font-family:'Dancing Script',cursive; font-size:clamp(40px,8vw,80px); font-weight:700;
+    background:linear-gradient(135deg,#ff3d7f,#a855f7,#ff6ec7,#fbbf24);
+    background-size:300% 300%;
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    animation:cinemaGrad 4s linear infinite;
+    filter:drop-shadow(0 0 40px rgba(255,61,127,.8));
+    margin-bottom:12px;
+  }
+  @keyframes cinemaGrad { 0%{background-position:0% 50%} 100%{background-position:300% 50%} }
+  .cinema-title p {
+    color:rgba(255,230,242,0.7); font-size:clamp(14px,2vw,20px);
+    letter-spacing:8px; text-transform:uppercase;
+    font-weight:300;
+  }
+
+  .cinema-hint {
+    position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
+    color:rgba(255,230,242,0.4); font-size:12px; letter-spacing:2px;
+    z-index:5; animation:pulse 3s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:.9} }
+
+  .cinema-loading {
+    position:absolute; inset:0; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:20px; z-index:20;
+    background:#000; transition:opacity .8s;
+  }
+  .cinema-loading.hide { opacity:0; pointer-events:none; }
+  .cinema-loading .heart { font-size:60px; animation:beat 1.2s infinite; }
+  .cinema-loading .text {
+    color:var(--text-secondary); font-size:14px; letter-spacing:4px;
+  }
+
   @media (max-width:768px) {
     .chat-wrap { padding:0; }
     .chat-app { grid-template-columns:1fr; border-radius:0; width:100vw; height:100vh; max-width:none; }
@@ -322,6 +522,8 @@
     .emoji-picker { left:10px; right:10px; width:auto; }
     .login-card { padding:35px 24px 30px; }
     .who-buttons { flex-direction:column; }
+    .story-iloveyou .line2 { font-size:44px; }
+    .story-pen-text { font-size:32px; }
   }
 </style>
 </head>
@@ -339,7 +541,22 @@
 <div class="toast-container" id="toastContainer"></div>
 <div class="img-modal" id="imgModal"><img id="imgModalSrc" alt=""></div>
 
-<!-- AUTH -->
+<div class="heart-tree-bg" id="heartTreeBg">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="treeBgGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ff3d7f"/>
+        <stop offset="100%" stop-color="#a855f7"/>
+      </linearGradient>
+    </defs>
+    <path d="M100 190 Q100 150 100 120" stroke="url(#treeBgGrad)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M100 120 Q70 90 50 70 Q30 50 50 30 Q70 20 100 50" stroke="url(#treeBgGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M100 120 Q130 90 150 70 Q170 50 150 30 Q130 20 100 50" stroke="url(#treeBgGrad)" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M100 50 Q90 40 80 35" stroke="url(#treeBgGrad)" stroke-width="2" fill="none"/>
+    <path d="M100 50 Q110 40 120 35" stroke="url(#treeBgGrad)" stroke-width="2" fill="none"/>
+  </svg>
+</div>
+
 <div class="auth-wrap" id="authWrap">
   <div class="login-card">
     <div class="logo-hearts"><span>💕</span><span>💖</span><span>💕</span></div>
@@ -366,7 +583,6 @@
   </div>
 </div>
 
-<!-- WHO ARE YOU -->
 <div class="who-wrap" id="whoWrap">
   <div class="who-card">
     <h2>مين اللي بيدخل دلوقتي؟</h2>
@@ -386,7 +602,6 @@
   </div>
 </div>
 
-<!-- CHAT -->
 <div class="chat-wrap" id="chatWrap">
   <div class="chat-app">
     <aside class="chat-sidebar">
@@ -395,6 +610,16 @@
         <h2>يوسف & زوتي</h2>
         <p>معاً للأبد 💍</p>
       </div>
+
+      <button class="story-btn" id="storyBtn">
+        <span class="icon">📖</span>
+        <span>قصتنا 💕</span>
+      </button>
+
+      <button class="cinema-btn" id="cinemaBtn">
+        <span class="icon">🎬</span>
+        <span>المشهد السينمائي 3D</span>
+      </button>
 
       <div class="love-counter-big">
         <div class="num" id="daysTogether">0</div>
@@ -484,6 +709,66 @@
   </div>
 </div>
 
+<div class="story-overlay" id="storyOverlay">
+  <button class="story-close" id="storyClose">✕</button>
+  <div class="story-stage">
+    <div class="story-iloveyou">
+      <div class="line1">Our Story</div>
+      <div class="line2">I Love You</div>
+      <div class="line3">يوسف 💕 زوتي</div>
+    </div>
+    <div class="story-tree">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="treeGrad" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#8b4513"/>
+            <stop offset="40%" stop-color="#ff3d7f"/>
+            <stop offset="100%" stop-color="#a855f7"/>
+          </linearGradient>
+        </defs>
+        <path class="tree-path" d="M150 280 Q150 230 150 180"/>
+        <path class="tree-path" d="M150 180 Q120 150 90 130 Q70 115 60 90"/>
+        <path class="tree-path" d="M150 160 Q130 140 110 120 Q95 105 90 80"/>
+        <path class="tree-path" d="M150 180 Q180 150 210 130 Q230 115 240 90"/>
+        <path class="tree-path" d="M150 160 Q170 140 190 120 Q205 105 210 80"/>
+        <path class="tree-path" d="M60 90 Q50 70 70 55 Q90 45 110 65 Q120 75 130 90"/>
+        <path class="tree-path" d="M240 90 Q250 70 230 55 Q210 45 190 65 Q180 75 170 90"/>
+        <path class="tree-path" d="M130 90 Q140 80 150 75 Q160 80 170 90"/>
+        <path class="tree-path" d="M150 75 Q140 60 130 50 Q120 45 110 55"/>
+        <path class="tree-path" d="M150 75 Q160 60 170 50 Q180 45 190 55"/>
+        <g>
+          <circle class="tree-leaf" cx="70" cy="55" r="4" fill="#ff3d7f" style="--i:0"/>
+          <circle class="tree-leaf" cx="90" cy="45" r="3" fill="#ff6ec7" style="--i:1"/>
+          <circle class="tree-leaf" cx="110" cy="65" r="4" fill="#a855f7" style="--i:2"/>
+          <circle class="tree-leaf" cx="130" cy="50" r="3" fill="#ff3d7f" style="--i:3"/>
+          <circle class="tree-leaf" cx="150" cy="75" r="4" fill="#ff6ec7" style="--i:4"/>
+          <circle class="tree-leaf" cx="170" cy="50" r="3" fill="#a855f7" style="--i:5"/>
+          <circle class="tree-leaf" cx="190" cy="65" r="4" fill="#ff3d7f" style="--i:6"/>
+          <circle class="tree-leaf" cx="210" cy="45" r="3" fill="#ff6ec7" style="--i:7"/>
+          <circle class="tree-leaf" cx="230" cy="55" r="4" fill="#a855f7" style="--i:8"/>
+          <circle class="tree-leaf" cx="80" cy="80" r="3" fill="#fbbf24" style="--i:9"/>
+          <circle class="tree-leaf" cx="220" cy="80" r="3" fill="#fbbf24" style="--i:10"/>
+        </g>
+      </svg>
+      <div class="story-pen-text">بحبك 💕</div>
+    </div>
+  </div>
+</div>
+
+<div class="cinema-overlay" id="cinemaOverlay">
+  <canvas id="cinemaCanvas"></canvas>
+  <div class="cinema-loading" id="cinemaLoading">
+    <div class="heart">💕</div>
+    <div class="text">جاري تحميل عالمنا...</div>
+  </div>
+  <button class="cinema-close" id="cinemaClose">✕</button>
+  <div class="cinema-title">
+    <h2>I Love You</h2>
+    <p>يوسف & زوتي</p>
+  </div>
+  <div class="cinema-hint">حرّك الماوس لتتفاعل مع القلوب</div>
+</div>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp, deleteDoc, doc, getDocs, limit } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
@@ -504,8 +789,8 @@
   const COUPLE_EMAIL = 'zozyuozo3272@gmail.com';
   const COUPLE_PASSWORD = 'joozoo327#';
   const START_DATE = new Date('2026-03-27');
-  const YUSUF_BDAY = { month: 9, day: 16 }; // 16 سبتمبر
-  const ZOZ_BDAY = { month: 11, day: 6 };   // 6 نوفمبر
+  const YUSUF_BDAY = { month: 9, day: 16 };
+  const ZOZ_BDAY = { month: 11, day: 6 };
 
   const $ = id => document.getElementById(id);
   const toast = (msg, type='info', dur=3000) => {
@@ -519,7 +804,6 @@
 
   window.addEventListener('load', () => setTimeout(() => $('splash').classList.add('hide'), 2200));
 
-  // خلفية
   (function spawnHearts() {
     const hearts = ['💕','💖','💗','💓','💘','💝','💞','❤️','🌹','✨'];
     const c = $('floatingHearts');
@@ -553,7 +837,6 @@
     $('togglePass').textContent = p.type === 'password' ? '👁️' : '🙈';
   });
 
-  // Login
   $('loginForm').addEventListener('submit', async e => {
     e.preventDefault();
     const email = $('email').value.trim().toLowerCase();
@@ -581,7 +864,6 @@
     $('whoWrap').classList.add('active');
   });
 
-  // Who are you?
   document.querySelectorAll('.who-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const user = btn.dataset.user;
@@ -597,7 +879,6 @@
     });
   });
 
-  // ===== Time helpers =====
   function daysSince(date) {
     const now = new Date();
     return Math.floor((now - date) / (1000 * 60 * 60 * 24));
@@ -623,17 +904,13 @@
   updateCounters();
   setInterval(updateCounters, 60000);
 
-  // ===== Chat =====
   let currentUser = localStorage.getItem('current_user') || '';
-  let currentEmoji = localStorage.getItem('current_emoji') || '👦';
   let unsubMessages = null;
-  let allMessages = [];
   let isFirstLoad = true;
 
   function initChat() {
     if (unsubMessages) return;
     currentUser = localStorage.getItem('current_user');
-    currentEmoji = localStorage.getItem('current_emoji');
     listenMessages();
   }
 
@@ -643,7 +920,6 @@
       const msgs = [];
       snap.forEach(d => msgs.push({ id: d.id, ...d.data() }));
       const wasInitial = isFirstLoad;
-      allMessages = msgs;
       renderMessages(msgs, wasInitial);
       if (wasInitial) isFirstLoad = false;
     }, err => console.error('Firestore error:', err));
@@ -717,7 +993,6 @@
     catch(e) { toast('فشل الحذف', 'error'); }
   };
 
-  // Send
   const chatInput = $('chatInput'), sendBtn = $('sendBtn');
   chatInput.addEventListener('input', () => {
     sendBtn.disabled = !chatInput.value.trim();
@@ -741,7 +1016,6 @@
     } catch(e) { toast('فشل الإرسال', 'error'); chatInput.value = text; }
   }
 
-  // Attach
   $('attachBtn').addEventListener('click', () => $('fileInput').click());
   $('fileInput').addEventListener('change', async e => {
     const file = e.target.files[0];
@@ -760,7 +1034,6 @@
     e.target.value = '';
   });
 
-  // Emojis
   const emojis = ['💕','💖','💗','💓','💘','💝','💞','❤️','😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','😉','😊','😇','🥰','😍','🤩','😘','😗','😚','😙','🥲','😋','😛','😜','🤪','😝','🤑','🤗','🤭','🤫','🤔','🤐','🤨','😐','😑','😶','😏','😒','🙄','😬','🤥','😌','😔','😪','🤤','😴','😷','🤒','🤕','🤢','🤮','🤧','🥵','🥶','🥴','😵','🤯','🤠','🥳','😎','🤓','🧐','😕','😟','🙁','😮','😯','😲','😳','🥺','😦','😧','😨','😰','😥','😢','😭','😱','😖','😣','😞','😓','😩','😫','🥱','😤','😡','😠','🤬','😈','💀','💩','🤡','👻','👽','🤖','💯','🔥','✨','⭐','💫','⚡','💥','💢','💦','💨','🌹','🌸','🌺','🌻','🌷','🌈','☀️','🌙','⛅','☁️','🌧️','❄️','🍀','💎','🔮','🎁','🎈','🎉','🎊','🏆','🥇','🎯','🎵','☕','🍕','🍔','🍟','🍎','🍓','🍩','🍫','👍','👎','👌','✌️','🤞','🤟','🤘','🤙','👈','👉','👆','👇','☝️','✋','🤚','🖐️','🖖','👋','🤝','🙏','💪','💍','💐','🕊️','👑','💌','🎀','💋','🫶','🫰','🫱','🫲'];
   const emojiPicker = $('emojiPicker');
   emojiPicker.innerHTML = emojis.map(e => `<button type="button">${e}</button>`).join('');
@@ -776,7 +1049,6 @@
     if (!emojiPicker.contains(e.target) && e.target.id !== 'emojiBtn') emojiPicker.classList.remove('show');
   });
 
-  // Switch user
   $('switchUser').addEventListener('click', () => {
     if (!confirm('تبديل المستخدم؟')) return;
     localStorage.removeItem('current_user');
@@ -784,7 +1056,6 @@
     location.reload();
   });
 
-  // Clear chat
   $('clearChat').addEventListener('click', async () => {
     if (!confirm('مسح كل الرسائل؟ لا يمكن التراجع 💔')) return;
     try {
@@ -796,13 +1067,232 @@
     } catch(e) { toast('فشل المسح', 'error'); }
   });
 
-  // Logout
   $('logoutBtn').addEventListener('click', () => {
     if (!confirm('تسجيل الخروج؟ 💔')) return;
     localStorage.removeItem('current_user');
     localStorage.removeItem('current_emoji');
     location.reload();
   });
+
+  const storyBtn = $('storyBtn');
+  const storyOverlay = $('storyOverlay');
+  const storyClose = $('storyClose');
+
+  storyBtn.addEventListener('click', () => {
+    storyOverlay.classList.add('show');
+    const tree = storyOverlay.querySelectorAll('.tree-path');
+    tree.forEach(p => { p.style.animation = 'none'; p.offsetHeight; p.style.animation = ''; });
+    const leaves = storyOverlay.querySelectorAll('.tree-leaf');
+    leaves.forEach(l => { l.style.animation = 'none'; l.offsetHeight; l.style.animation = ''; });
+    const penText = storyOverlay.querySelector('.story-pen-text');
+    if (penText) { penText.style.animation = 'none'; penText.offsetHeight; penText.style.animation = ''; }
+    const iloveyou = storyOverlay.querySelector('.story-iloveyou');
+    if (iloveyou) { iloveyou.style.animation = 'none'; iloveyou.offsetHeight; iloveyou.style.animation = ''; }
+    spawnStoryHearts();
+  });
+
+  storyClose.addEventListener('click', () => storyOverlay.classList.remove('show'));
+  storyOverlay.addEventListener('click', e => {
+    if (e.target === storyOverlay) storyOverlay.classList.remove('show');
+  });
+
+  function spawnStoryHearts() {
+    const stage = storyOverlay.querySelector('.story-stage');
+    stage.querySelectorAll('.story-heart, .story-spark').forEach(el => el.remove());
+    const hearts = ['💕','💖','💗','💓','💘','💝','💞','❤️','🌹','✨'];
+    for (let i = 0; i < 20; i++) {
+      const h = document.createElement('div');
+      h.className = 'story-heart';
+      h.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      h.style.left = (10 + Math.random() * 80) + '%';
+      h.style.bottom = '0';
+      h.style.fontSize = (12 + Math.random() * 20) + 'px';
+      h.style.animationDelay = (Math.random() * 3) + 's';
+      h.style.animationDuration = (4 + Math.random() * 4) + 's';
+      stage.appendChild(h);
+    }
+    for (let i = 0; i < 30; i++) {
+      const s = document.createElement('div');
+      s.className = 'story-spark';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDelay = (Math.random() * 4) + 's';
+      s.style.animationDuration = (3 + Math.random() * 3) + 's';
+      stage.appendChild(s);
+    }
+  }
+
+  const cinemaBtn = $('cinemaBtn');
+  const cinemaOverlay = $('cinemaOverlay');
+  const cinemaClose = $('cinemaClose');
+  const cinemaLoading = $('cinemaLoading');
+  let threeInitialized = false;
+  let cinemaAnimId = null;
+
+  async function initThreeScene() {
+    if (threeInitialized) return;
+    const THREE = await import('three');
+    const canvas = $('cinemaCanvas');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x000000, 1);
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x0a0210, 0.002);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.z = 400;
+
+    const ambient = new THREE.AmbientLight(0x6a11cb, 0.5);
+    scene.add(ambient);
+    const pinkLight = new THREE.PointLight(0xff3d7f, 2, 1500);
+    pinkLight.position.set(200, 200, 200);
+    scene.add(pinkLight);
+    const purpleLight = new THREE.PointLight(0xa855f7, 2, 1500);
+    purpleLight.position.set(-200, -200, 200);
+    scene.add(purpleLight);
+    const whiteLight = new THREE.PointLight(0xffffff, 1, 1000);
+    whiteLight.position.set(0, 0, 500);
+    scene.add(whiteLight);
+
+    const heartShape = new THREE.Shape();
+    heartShape.moveTo(25, 25);
+    heartShape.bezierCurveTo(25, 25, 20, 0, 0, 0);
+    heartShape.bezierCurveTo(-30, 0, -30, 35, -30, 35);
+    heartShape.bezierCurveTo(-30, 55, -10, 77, 25, 95);
+    heartShape.bezierCurveTo(60, 77, 80, 55, 80, 35);
+    heartShape.bezierCurveTo(80, 35, 80, 0, 50, 0);
+    heartShape.bezierCurveTo(35, 0, 25, 25, 25, 25);
+
+    const extrudeSettings = { depth: 8, bevelEnabled: true, bevelSegments: 2, steps: 2, bevelSize: 1, bevelThickness: 1 };
+    const heartGeometry = new THREE.ExtrudeGeometry(heartShape, extrudeSettings);
+    heartGeometry.center();
+
+    const hearts = [];
+    const heartColors = [0xff3d7f, 0xff6ec7, 0xa855f7, 0xfbbf24, 0xff0080];
+    for (let i = 0; i < 60; i++) {
+      const color = heartColors[Math.floor(Math.random() * heartColors.length)];
+      const mat = new THREE.MeshPhysicalMaterial({
+        color, emissive: color, emissiveIntensity: 0.5,
+        metalness: 0.3, roughness: 0.2, clearcoat: 1, clearcoatRoughness: 0.1,
+        transparent: true, opacity: 0.85
+      });
+      const heart = new THREE.Mesh(heartGeometry, mat);
+      heart.scale.setScalar(0.3 + Math.random() * 1.2);
+      heart.position.x = (Math.random() - 0.5) * 1200;
+      heart.position.y = (Math.random() - 0.5) * 1200;
+      heart.position.z = (Math.random() - 0.5) * 1200;
+      heart.rotation.x = Math.random() * Math.PI;
+      heart.rotation.y = Math.random() * Math.PI;
+      heart.userData = {
+        rotSpeed: (Math.random() - 0.5) * 0.02,
+        floatSpeed: 0.5 + Math.random(),
+        floatOffset: Math.random() * Math.PI * 2,
+        baseY: heart.position.y
+      };
+      scene.add(heart);
+      hearts.push(heart);
+    }
+
+    const starsGeo = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const starPositions = new Float32Array(starCount * 3);
+    const starColors = new Float32Array(starCount * 3);
+    const palette = [[1.0,0.24,0.5],[1.0,0.43,0.78],[0.66,0.33,0.97],[0.98,0.75,0.14],[1,1,1]];
+    for (let i = 0; i < starCount; i++) {
+      starPositions[i*3] = (Math.random()-0.5)*3000;
+      starPositions[i*3+1] = (Math.random()-0.5)*3000;
+      starPositions[i*3+2] = (Math.random()-0.5)*3000;
+      const c = palette[Math.floor(Math.random()*palette.length)];
+      starColors[i*3] = c[0]; starColors[i*3+1] = c[1]; starColors[i*3+2] = c[2];
+    }
+    starsGeo.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
+    starsGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+    const starsMat = new THREE.PointsMaterial({
+      size: 3, vertexColors: true, transparent: true, opacity: 0.9,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    });
+    const stars = new THREE.Points(starsGeo, starsMat);
+    scene.add(stars);
+
+    const particlesGeo = new THREE.BufferGeometry();
+    const pCount = 800;
+    const pPositions = new Float32Array(pCount * 3);
+    const pVelocities = [];
+    for (let i = 0; i < pCount; i++) {
+      pPositions[i*3] = (Math.random()-0.5)*2000;
+      pPositions[i*3+1] = (Math.random()-0.5)*2000;
+      pPositions[i*3+2] = (Math.random()-0.5)*2000;
+      pVelocities.push({
+        x: (Math.random()-0.5)*0.5,
+        y: (Math.random()-0.5)*0.5,
+        z: (Math.random()-0.5)*0.5
+      });
+    }
+    particlesGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+    const particlesMat = new THREE.PointsMaterial({
+      color: 0xff6ec7, size: 2, transparent: true, opacity: 0.6,
+      blending: THREE.AdditiveBlending, depthWrite: false
+    });
+    const particles = new THREE.Points(particlesGeo, particlesMat);
+    scene.add(particles);
+
+    const mouse = { x: 0, y: 0 };
+    window.addEventListener('mousemove', e => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    const clock = new THREE.Clock();
+    function animate() {
+      cinemaAnimId = requestAnimationFrame(animate);
+      const t = clock.getElapsedTime();
+      hearts.forEach(h => {
+        h.rotation.y += h.userData.rotSpeed;
+        h.rotation.x += h.userData.rotSpeed * 0.5;
+        h.position.y = h.userData.baseY + Math.sin(t * h.userData.floatSpeed + h.userData.floatOffset) * 20;
+      });
+      stars.rotation.y = t * 0.02;
+      stars.rotation.x = t * 0.01;
+      const pPos = particlesGeo.attributes.position.array;
+      for (let i = 0; i < pCount; i++) {
+        pPos[i*3] += pVelocities[i].x;
+        pPos[i*3+1] += pVelocities[i].y;
+        pPos[i*3+2] += pVelocities[i].z;
+        if (Math.abs(pPos[i*3]) > 1000) pVelocities[i].x *= -1;
+        if (Math.abs(pPos[i*3+1]) > 1000) pVelocities[i].y *= -1;
+        if (Math.abs(pPos[i*3+2]) > 1000) pVelocities[i].z *= -1;
+      }
+      particlesGeo.attributes.position.needsUpdate = true;
+      camera.position.x += (mouse.x * 100 - camera.position.x) * 0.02;
+      camera.position.y += (mouse.y * 100 - camera.position.y) * 0.02;
+      camera.lookAt(scene.position);
+      pinkLight.position.x = Math.sin(t * 0.5) * 300;
+      pinkLight.position.y = Math.cos(t * 0.5) * 300;
+      purpleLight.position.x = Math.sin(t * 0.5 + Math.PI) * 300;
+      purpleLight.position.y = Math.cos(t * 0.5 + Math.PI) * 300;
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    threeInitialized = true;
+    animate();
+    setTimeout(() => cinemaLoading.classList.add('hide'), 800);
+  }
+
+  cinemaBtn.addEventListener('click', async () => {
+    cinemaOverlay.classList.add('show');
+    cinemaLoading.classList.remove('hide');
+    await initThreeScene();
+  });
+
+  cinemaClose.addEventListener('click', () => {
+    cinemaOverlay.classList.remove('show');
+    if (cinemaAnimId) { cancelAnimationFrame(cinemaAnimId); cinemaAnimId = null; }
+  });
 </script>
 </body>
-</html>
